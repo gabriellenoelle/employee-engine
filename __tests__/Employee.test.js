@@ -1,5 +1,8 @@
+const { expect } = require("@jest/globals");
 const checkIfEqual = require("../lib/Employee.js");
 
-test("checks if 10 is equal to 10", () => {
-  expect(checkIfEqual(10, 10)).toBe(true);
+test("creates an employee name object", () => {
+  const name = new Name("employee");
+
+  expect(name.name).toBe("employee");
 });
