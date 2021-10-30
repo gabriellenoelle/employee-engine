@@ -46,8 +46,10 @@ const promptUser = () => {
           console.log("Please enter your employee ID!");
           return false;
         }
+      },
     },
-}};
+  ]);
+};
 
 const promptProject = (portfolioData) => {
   console.log(`
@@ -60,8 +62,8 @@ Add a New Employee
   if (!portfolioData.projects) {
     portfolioData.projects = [];
   }
-  return inquirer
-    .prompt([
+  return (
+    inquirer.prompt([
       {
         type: "input",
         name: "name",
@@ -110,7 +112,7 @@ Add a New Employee
       {
         type: "confirm",
         name: "feature",
-        message: "Would you like to feature this project?",
+        message: "Would you like to feature this employee?",
         default: false,
       },
       {
@@ -120,31 +122,32 @@ Add a New Employee
         default: false,
       },
     ]),
-    .then((projectData) => {
-      portfolioData.projects.push(projectData);
-      if (projectData.confirmAddProject) {
-        return promptProject(portfolioData);
-      } else {
-        return portfolioData;
-      }
-    });
-  };
+    // .then((projectData) => {
+    //   portfolioData.projects.push(projectData);
+    //   if (projectData.confirmAddProject) {
+    //     return promptProject(portfolioData);
+    //   } else {
+    //     return portfolioData;
+    //   }
+    // });
 
-promptUser()
-  .then(promptProject)
-  .then((portfolioData) => {
-    return generateHtml(portfolioData);
-  })
-  .then((pageHTML) => {
-    return writeFile(pageHTML);
-  })
-  .then((writeFileResponse) => {
-    console.log(writeFileResponse);
-    return copyFile();
-  })
-  .then((copyFileResponse) => {
-    console.log(copyFileResponse);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+    promptUser()
+      .then(promptProject)
+      .then((portfolioData) => {
+        return generateHtml(portfolioData);
+      })
+      .then((pageHTML) => {
+        return writeFile(pageHTML);
+      })
+      .then((writeFileResponse) => {
+        console.log(writeFileResponse);
+        return copyFile();
+      })
+      .then((copyFileResponse) => {
+        console.log(copyFileResponse);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  );
+};
