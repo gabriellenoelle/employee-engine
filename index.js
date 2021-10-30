@@ -9,7 +9,27 @@ const questions = [
   {
     type: "input",
     message: "Hello! What is your name?",
-    name: "Manager",
+    name: "Name",
+  },
+  {
+    type: "input",
+    message: "What is your employee ID?",
+    name: "Id",
+  },
+  {
+    type: "input",
+    message: "What is your email address?",
+    name: "Email",
+  },
+  {
+    type: "input",
+    message: "What is your office number?",
+    name: "Office",
+  },
+  {
+    type: "confirm",
+    message: "Would you like to add additional employees?",
+    name: "Add",
   },
 ];
 
